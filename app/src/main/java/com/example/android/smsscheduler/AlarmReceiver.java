@@ -19,6 +19,8 @@ public class AlarmReceiver extends Service {
 
     String msg,telno;
 
+
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -35,5 +37,15 @@ public class AlarmReceiver extends Service {
 
       return START_STICKY;
 
+    }
+
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+
+        Intent restartintent = new Intent(getApplicationContext(),this.getClass());
+        restartintent.setPackage(getPackageName());
+
+        startService(restartintent);
+        super.onTaskRemoved(rootIntent);
     }
 }

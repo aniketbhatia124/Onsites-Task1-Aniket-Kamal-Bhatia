@@ -177,10 +177,12 @@ public class EnterScheduleActivity extends AppCompatActivity implements TimePick
 
 
 
-        PendingIntent pendingIntent = PendingIntent.getService(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getForegroundService(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
 
+
         alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+
         Toast.makeText(this, "SMS is scheduled", Toast.LENGTH_SHORT).show();
 
     }
